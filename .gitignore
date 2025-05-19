@@ -1,0 +1,14 @@
+# Golang
+/backend/bin/
+/backend/*.exe
+/backend/*.test
+/backend/coverage.out
+
+# Node
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+
+# General
+.DS_Store
+.env
