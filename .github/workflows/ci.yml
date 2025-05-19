@@ -33,7 +33,7 @@ jobs:
 
     - name: Build frontend
       working-directory: frontend
-      run: npm run build
+      run: npx next build
 
     - name: Set up Go
       uses: actions/setup-go@v5
