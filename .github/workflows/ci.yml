@@ -19,19 +19,20 @@ jobs:
       with:
         node-version: 20
 
-    - name: Cache npm dependencies
-      uses: actions/cache@v3
-      with:
-        path: |
-          frontend/node_modules
-          frontend/.npm
-        key: ${{ runner.os }}-npm-${{ hashFiles('frontend/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-npm-
+    # - name: Cache npm dependencies
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: |
+    #       frontend/node_modules
+    #       frontend/.npm
+    #       frontend/.next
+    #     key: ${{ runner.os }}-npm-${{ hashFiles('frontend/package-lock.json') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-npm-
 
     - name: Install frontend dependencies
       working-directory: frontend
-      run: npm install
+      run: npm ci
 
     - name: Build frontend
       working-directory: frontend
