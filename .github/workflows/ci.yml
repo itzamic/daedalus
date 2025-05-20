@@ -19,30 +19,22 @@ jobs:
       with:
         node-version: 20
 
-    # - name: Cache npm dependencies
-    #   uses: actions/cache@v3
-    #   with:
-    #     path: |
-    #       frontend/node_modules
-    #       frontend/.npm
-    #       frontend/.next
-    #     key: ${{ runner.os }}-npm-${{ hashFiles('frontend/package-lock.json') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-npm-
-    - name: Upgrade npm to latest
-      run: npm install -g npm@9.8.0
-    - name: Clear npm cache
-      run: npm cache clean --force
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          frontend/node_modules
+          frontend/.npm
+          frontend/.next
+        key: ${{ runner.os }}-npm-${{ hashFiles('frontend/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
     - name: Install frontend dependencies
       working-directory: frontend
       run: |
         for i in {1..3}; do
           npm ci && break || sleep 10;
         done
-    - name: Debug npm install
-      working-directory: frontend
-      run: |
-        npm ci || (cat /home/runner/.npm/_logs/* && exit 1)
     - name: Build frontend
       working-directory: frontend
       run: npx next build
