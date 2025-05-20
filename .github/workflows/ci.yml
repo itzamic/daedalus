@@ -22,7 +22,9 @@ jobs:
     - name: Cache npm dependencies
       uses: actions/cache@v3
       with:
-        path: frontend/node_modules
+        path: |
+          frontend/node_modules
+          frontend/.npm
         key: ${{ runner.os }}-npm-${{ hashFiles('frontend/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-npm-
