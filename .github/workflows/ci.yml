@@ -31,9 +31,7 @@ jobs:
 
     - name: Install frontend dependencies
       working-directory: frontend
-      run: npm ci
-      env:
-        NODE_ENV: development
+      run: npm install
 
     - name: Build frontend
       working-directory: frontend
